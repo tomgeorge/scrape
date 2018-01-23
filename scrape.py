@@ -26,8 +26,8 @@ def GetLinks(initialState, initialUrl):
         nextUrl = ''.join([initialUrl, "/", x])
         initialState['urls'].append(nextUrl)
         urls.append(GetLinks(initialState, initialUrl))
-    return urls
+    return initialState
 
 initialState = { 'urls': [sys.argv[1]], 'emails': [] }
-urls = GetLinks(initialState, sys.argv[1])
-print urls
+data = GetLinks(initialState, sys.argv[1])
+print data['urls']
