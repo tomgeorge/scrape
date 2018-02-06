@@ -18,7 +18,17 @@ def GetLinks(initialState, initialUrl):
     for element in json_payload:
         payload = json.loads(element.text)
         if 'emails' in payload:
-            initialState['emails'].append(payload['emails'])
+#            print 'about to cons'
+#            for key,val in initialState.iteritems():
+#                print key,val
+#            print ''
+            for item in payload['emails']:
+                initialState['emails'].append(item)
+                print item
+#            print ''.join(initialState)
+#            for item in initialState['emails']:
+#                print item
+#            initialState['emails'].append(payload['emails'])
     a_tags = soup.find_all("a", "c-directory-list-content-item-link")
     urls=list()
     for tag in a_tags:
@@ -30,4 +40,3 @@ def GetLinks(initialState, initialUrl):
 
 initialState = { 'urls': [sys.argv[1]], 'emails': [] }
 data = GetLinks(initialState, sys.argv[1])
-print data['urls']
